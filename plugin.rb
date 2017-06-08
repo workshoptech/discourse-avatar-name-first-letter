@@ -24,8 +24,12 @@ after_initialize do
     end
 
     def self.get_name_first_letter(username)
-      user = User.find_by_username(username)
-      user.name.presence ? user.name.gsub(/\W+/,'')[0].downcase : username[0].downcase
+      if user = User.find_by_username(username)
+        name = user.name.presence ? user.name.gsub(/\W+/,'') : ''
+      else
+        name = ''
+      end
+      name.presence ? user.name.gsub(/\W+/,'')[0].downcase : username[0].downcase
     end
   end
 
