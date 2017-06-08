@@ -25,7 +25,7 @@ after_initialize do
 
     def self.get_name_first_letter(username)
       if user = User.find_by_username(username)
-        name = user.name.presence ? user.name.gsub(/[^a-zA-Z0-9 -]/,'') : ''
+        name = user.name.presence ? user.name.gsub(/[^a-zA-Z0-9]/,'') : ''
       else
         name = ''
       end
