@@ -23,6 +23,12 @@ after_initialize do
       end
     end
 
+    def self.letter_avatar_color(username)
+      username ||= ""
+      color = User::COLORS[Digest::MD5.hexdigest(username)[0...15].to_i(16) % User::COLORS.length]
+      color.map { |c| c.to_s(16).rjust(2, '0') }.join
+    end
+
     def self.get_name_first_letter(username)
       if user = User.find_by_username(username)
         name = user.name.presence ? user.name.gsub(/[^a-zA-Z0-9]/,'') : ''
@@ -32,5 +38,24 @@ after_initialize do
       name.presence ? user.name.gsub(/\W+/,'')[0].downcase : username[0].downcase
     end
   end
+
+  # Workshop palette
+  COLORS = [[89, 91, 134],
+      [73, 75, 110],
+      [247, 197, 159],
+      [230, 189, 157],
+      [133, 186, 161],
+      [115, 161, 139],
+      [144, 112, 140],
+      [117, 91, 114],
+      [164, 190, 243],
+      [146, 169, 217],
+      [160, 113, 120],
+      [135, 95, 101],
+      [231, 107, 116],
+      [207, 96, 103],
+      [237, 164, 189],
+      [212, 146, 169]]
+
 
 end
