@@ -37,10 +37,9 @@ after_initialize do
       end
       name.presence ? user.name.gsub(/\W+/,'')[0].downcase : username[0].downcase
     end
-  end
 
-  # Workshop palette
-  COLORS = [[89, 91, 134],
+    # Workshop palette
+    COLORS = [[89, 91, 134],
       [73, 75, 110],
       [247, 197, 159],
       [230, 189, 157],
@@ -57,5 +56,5 @@ after_initialize do
       [237, 164, 189],
       [212, 146, 169]]
 
-
+  end
 end
